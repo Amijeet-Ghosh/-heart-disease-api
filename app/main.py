@@ -12,8 +12,6 @@ app = FastAPI(
 )
 
 # ── Load model at startup ────────────────────────────────────────────────────
-# We load the model ONCE when the app starts, not on every request.
-# Loading a model is expensive — doing it per-request would make your API very slow.
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "..", "model", "heart_model.joblib")
 
@@ -78,8 +76,7 @@ def predict(patient: PatientFeatures):
     if model is None:
         raise HTTPException(status_code=503, detail="Model not loaded")
 
-    # Build the feature array in the exact same order as training
-    # The model is strict about column order — wrong order = wrong prediction
+
     features = np.array([[
         patient.age,
         patient.sex,
@@ -96,8 +93,6 @@ def predict(patient: PatientFeatures):
         patient.thal
     ]])
 
-    # model.predict() returns an array like [1] or [0]
-    # model.predict_proba() returns confidence scores like [[0.3, 0.7]]
     prediction = model.predict(features)[0]
     probability = model.predict_proba(features)[0]
 
