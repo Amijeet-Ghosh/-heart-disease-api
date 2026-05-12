@@ -1,0 +1,26 @@
+
+
+services:
+  api:
+    # 'build: .' means "look for a Dockerfile in the current folder"
+    build: .
+
+    # Map port 8000 on your machine to port 8000 inside the container
+    # Format is "host_port:container_port"
+    # So http://localhost:5000 on your browser hits port 8000 inside the container
+    ports:
+      - "5000:8000"
+
+    # Automatically restart the container if it crashes
+    # 'unless-stopped' means it restarts on failure but stays stopped
+    # if you manually stop it with docker-compose down
+    restart: unless-stopped
+
+    # Health check — Docker pings /health every 30 seconds
+    # If it fails 3 times in a row, Docker marks the container as unhealthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
