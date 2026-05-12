@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Environment variables (never commit secrets)
+.env
+*.env
+
+# Data files (Kaggle CSV — not your code, don't push it)
+*.csv
+*.xlsx
+
+# Trained model (optional — small enough to include, but good habit to know)
+# model/*.joblib
+
+# OS junk
