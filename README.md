@@ -130,4 +130,4 @@ on Kaggle — 1025 rows, 13 features, binary target.
 ## Deployment
 
 Live API on Render:
-**https://heart-disease-api-re57.onrender.com**
+**https://heart-disease-api-re57.onrender.com/docs**
