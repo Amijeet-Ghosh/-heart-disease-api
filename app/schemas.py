@@ -1,11 +1,7 @@
 from pydantic import BaseModel, Field
 
 class PatientFeatures(BaseModel):
-    """
-    These 13 fields match exactly the columns in heart.csv (minus 'target').
-    Pydantic will automatically validate incoming requests — if someone sends
-    a string where an int is expected, FastAPI returns a clear error instantly.
-    """
+ 
 
     age: int = Field(..., description="Age of the patient in years", example=55)
     

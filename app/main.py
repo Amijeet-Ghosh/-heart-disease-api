@@ -42,7 +42,7 @@ def health():
     if model is None:
         raise HTTPException(status_code=503, detail="Model not loaded")
     return {
-        "status": "ok",
+        "status": "healthy",
         "model_loaded": True
     }
 
